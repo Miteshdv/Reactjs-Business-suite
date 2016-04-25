@@ -12,7 +12,7 @@ class App extends React.Component {
 
       	 <Box width ="63.5%" height ={300} column>
 
-             <div>Test Suite</div>
+             <div>Test</div>
 
 
 
