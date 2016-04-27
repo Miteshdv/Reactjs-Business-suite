@@ -4,10 +4,10 @@ var webpack = require('webpack')
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
   entry: [
-      'webpack-hot-middleware/client',
+      'webpack-hot-middleware/client',     
     './index'
   ],
-  resolve:{
+  resolve:{     
       extensions:['','.js','.json']
   },
   output: {
@@ -19,20 +19,20 @@ module.exports = {
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()     
   ],
+  
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['babel'],
-        exclude: /node_modules/       
+        exclude: /node_modules/,
+        loaders: ['babel']     
       },
       {
-         test: /\.jsx?$/,
-         exclude: /node_modules/,
+         test: /\.jsx?$/,         
          loader: 'babel',
-
-         query: {
-            presets: ['es2015', 'react']
+         query: {            
+          presets: ['es2015', 'stage-0' ,'react'],
+          plugins:["transform-decorators-legacy"] 
          }
       },
       { 
@@ -45,7 +45,7 @@ module.exports = {
       },   
       { 
          
-         test: /\.gif$/, loader: "url-loader?mimetype=image/png" 
+         test: /\.(gif|png)$/, loader: "url-loader?mimetype=image/png" 
 
       },  
      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
