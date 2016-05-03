@@ -1,12 +1,20 @@
 import React from 'react';
-import TreeView from './TreeView.jsx'
-import Container from 'react-layout-components';
-import {VBox,Box} from 'react-layout-components';
-import ProductListView from './ProductListComponent/ProductsListView.jsx';
-import  'react-widgets/lib/less/react-widgets.less';
 const imgSrc = require('../assets/images/reactjsLogo.png')
 
+import MaterialUITabs from 'material-ui/Tabs/Tabs';
+import MaterialUITab from 'material-ui/Tabs/tab';
+import DataGridContainer from '../containers/DataGridContainer.js';
+import ProductSelectionView from './ProductSelectionView.jsx'
+import baseTheme from 'material-ui/styles/baseThemes/lightBaseTheme';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+
 class App extends React.Component { 
+
+ 
+  getChildContext() {
+    return {muiTheme: getMuiTheme(baseTheme)};
+  }
+
 
   constructor() {
      super()
@@ -20,59 +28,41 @@ class App extends React.Component {
      this.setState({windowHeight:window.innerHeight})
      
    }
+  
  
    render() {
-      
-    var data = [
-                {
-                  url: "http://fakeimg.pl/200/?text=img1",
-                  name: "img1"
-                },
-                {
-                  url: "http://fakeimg.pl/200/?text=img2",
-                  name: "img2"
-                },
-                {
-                  url: "http://fakeimg.pl/200/?text=img3",
-                  name: "img3"
-                },
-                {
-                  url: "http://fakeimg.pl/200/?text=img4",
-                  name: "img4"
-                },
-                {
-                  url: "http://fakeimg.pl/200/?text=img5",
-                  name: "img5"
-                }
-              ]
 
+   
+   
       return (
-      	 
-            <VBox ref={(ref) => this.mainContainer = ref} width = "100%" height ={this.state.windowHeight} style = {{padding:"2px"}}>
-               <Box width ="100%" height ="50" style= {{border:"1px solid",padding:"2px"}} alignItems = "baseline">
+
+          <div class="window vbox" ref={(ref) => this.mainContainer = ref} style = {{width:"100%",padding:"2px",height:this.state.windowHeight,minWidth:"800px",overflow:"hidden"}}>
+               <div style= {{width:"100%",height:"50px",border:"1px solid",padding:"2px",alignItems: "baseline"}} >
 
                 <img src={imgSrc} alt="React JS" height="95%" width="42"/>
-                <span style = {{fontWeight:'bold',fontSize:"20",margin:"4px"}}> React JS Business Suite</span>
-               </Box>
-               <Box width = "100%"  >   
-                <Box width ="15%" height ={this.state.windowHeight*0.926}  style= {{border:"1px solid",margin:"4px 2px 0px 0px"}} >
-                  <TreeView/>
-                  
-                </Box>
-                <Box width ="85%" height ={this.state.windowHeight*0.926} style= {{border:"1px solid",margin:"4px 0px 0px 2px"}} >
+                <span style = {{fontWeight:'bold',fontSize:"20px",margin:"4px"}}> React JS Business Suite</span>
+               </div>
+               
+                <MaterialUITabs>
+                  <MaterialUITab  label="Products"><ProductSelectionView/></MaterialUITab>
+                  <MaterialUITab  label="Shopping cart">
+                    <DataGridContainer/>
+                  </MaterialUITab>
+                  <MaterialUITab label="Checkout">
+                   <div>Checkout</div>
+                  </MaterialUITab>
+                </MaterialUITabs>
+            </div>
 
-                <ProductListView imageData={data} wrapperClass="wrapper"
-                    gridClass="col-md-3"
-                    imgClass="responsive"
-                   />
-
-                </Box>
-               </Box>
-            </VBox>
+      	 
+         
       );
    }
 }
 
+App.childContextTypes = {
+    muiTheme: React.PropTypes.object
+};
 
 
 export default App

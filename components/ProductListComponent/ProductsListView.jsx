@@ -1,6 +1,7 @@
 var React = require('react');
 var ProductThumbnail = require('./ProductThumbnail.jsx');
-
+var TileLayout = require('pui-react-tile-layout').TileLayout;
+var TileLayoutItem = require('pui-react-tile-layout').TileLayoutItem;
 
 
 class ProductListView extends React.Component
@@ -18,31 +19,42 @@ class ProductListView extends React.Component
       {
         this.setState({
         wrapperClass: this.props.wrapperClass || this.props.defautImgWrapper,
-        imageData: this.props.imageData
+        productData: this.props.productData
         })
       }
 
       componentWillReceiveProps(nextProps) {
-        if (nextProps.imageData !== this.state.imageData) {
-          this.setState({imageData: nextProps.imageData })
+        if (nextProps.productData !== this.state.productData) {
+          this.setState({productData: nextProps.productData })
         }
       }
 
       render() {        
         var that = this;
         var imageList = [];
-        this.state.imageData.forEach(function(data, i) {
-          imageList.push(<ProductThumbnail key={i}
+
+        for(var  i = 0;i < this.state.productData.length ;i++)
+        { 
+            var data = this.state.productData[i]
+            imageList.push( <TileLayoutItem key = {data.id}><ProductThumbnail 
                                 data={data}
+                                id={data.id}
                                 imgClass={that.props.imgClass}
                                 gridClass={that.props.gridClass}
-                                handleClick={that.handleClick}/>)
-        })
+                                handleClick={that.handleClick}                                
+                                /></TileLayoutItem>)
+        }
+
+
+       
+
+
+   
 
         return (
-          <div className={this.state.wrapperClass}>
-            {imageList}
-          </div>
+         <TileLayout columns={6} noGutter >
+                 {imageList}  
+           </TileLayout>
         )
       }     
   }
@@ -51,9 +63,10 @@ class ProductListView extends React.Component
 ProductListView.propTypes = {
    wrapperClass:React.PropTypes.string,
    defautImgWrapper: React.PropTypes.string,
-   imageData: React.PropTypes.Object,
+   productData: React.PropTypes.array,
    imgClass:React.PropTypes.string,
-   gridClass:React.PropTypes.string
+   gridClass:React.PropTypes.string,
+   perPageProducts:React.PropTypes.number
 }
 
 ProductListView.defaultProps = {  

@@ -28,10 +28,13 @@ var ProductThumbnail = React.createClass({
 
   render: function() {
     return (
-      <div className={this.state.imgGrid}
-            onClick={this.handleClick}>
-        <div className={this.state.imgClass}>
-          <img src={this.state.data.url}/>
+      <div 
+            onClick={this.handleClick}
+            style= {{border:"1px solid",margin:"25px",height:"130px"}}             
+           >
+        <div >
+          <img src={this.state.data.url} style = {{width:"100%",height:"100px"}}/>
+          
         </div>
       </div>
     )
