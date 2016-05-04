@@ -6,7 +6,7 @@ import 'ag-grid/dist/styles/theme-fresh.css';
 import {IntlProvider, FormattedNumber, FormattedDate ,FormattedPlural} from 'react-intl';
 import Combobox  from 'react-widgets/lib/Combobox';
 
-class DataGridView extends React.Component{
+class ShoppingCartView extends React.Component{
 	
 	constructor() {
 		 super()
@@ -105,12 +105,12 @@ class DataGridView extends React.Component{
 }
 
 
-DataGridView.propTypes = {  
+ShoppingCartView.propTypes = {  
   loadGridData: React.PropTypes.func,
   gridData:React.PropTypes.Array
 }
 
-export default DataGridView
+export default ShoppingCartView
 
 
 	

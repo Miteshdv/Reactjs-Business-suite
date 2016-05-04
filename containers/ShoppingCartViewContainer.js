@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { getGridData} from '../actions/GetGridData'
-import DataGridView from '../components/DataGridView.jsx';
+import ShoppingCartView from '../components/ShoppingCartView.jsx';
 
 
 
@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const DataGridContainer = connect(
+const ShoppingCartViewContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(DataGridView)
+)(ShoppingCartView)
 
-export default DataGridContainer
+export default ShoppingCartViewContainer

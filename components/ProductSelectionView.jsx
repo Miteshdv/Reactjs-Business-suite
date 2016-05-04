@@ -40,11 +40,11 @@ class ProductSelectionView extends React.Component {
       	 
            
                <div  style={{float:"none",width:"100%"}}>   
-                <div  style= {{width:"14.5%" ,height:this.state.windowHeight*0.86,float:"left",border:"1px solid",margin:"4px 2px 0px 0px"}} >
+                <div  style= {{width:"14.5%" ,height:this.state.windowHeight*0.88,float:"left",border:"1px solid",margin:"0px 2px 0px 0px"}} >
                   <TreeView/>
                   
                 </div>
-                <div  style= {{float:"right",width:"85%",height:this.state.windowHeight*0.86,border:"1px solid",margin:"4px 0px 0px 2px",overflowY:"auto",overflowX:"hidden"}} >
+                <div  style= {{float:"right",width:"85%",height:this.state.windowHeight*0.88,border:"1px solid",margin:"0px 0px 0px 2px",overflowY:"auto",overflowX:"hidden"}} >
                
                 <ProductListView productData={data} wrapperClass="wrapper"
                     gridClass="col-md-3"
