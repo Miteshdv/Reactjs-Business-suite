@@ -1,6 +1,6 @@
 import React from 'react';
 const imgSrc = require('../assets/images/reactjsLogo.png')
-
+const commodityData = require('../data/ProductsViewData/ProductCommodityData.json')
 import MaterialUITabs from 'material-ui/Tabs/Tabs';
 import MaterialUITab from 'material-ui/Tabs/tab';
 import ShoppingCartViewContainer from '../containers/ShoppingCartViewContainer.js';

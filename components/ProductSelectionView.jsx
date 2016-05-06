@@ -1,5 +1,5 @@
 import React from 'react';
-import TreeView from './TreeView.jsx'
+import ProductCommodityTreeViewContainer from '../containers/ProductCommodityTreeViewContainer.js'
 
 import ProductListView from './ProductListComponent/ProductsListView.jsx';
 import  'react-widgets/lib/less/react-widgets.less';
@@ -41,7 +41,7 @@ class ProductSelectionView extends React.Component {
            
                <div  style={{float:"none",width:"100%"}}>   
                 <div  style= {{width:"14.5%" ,height:this.state.windowHeight*0.88,float:"left",border:"1px solid",margin:"0px 2px 0px 0px"}} >
-                  <TreeView/>
+                  <ProductCommodityTreeViewContainer/>
                   
                 </div>
                 <div  style= {{float:"right",width:"85%",height:this.state.windowHeight*0.88,border:"1px solid",margin:"0px 0px 0px 2px",overflowY:"auto",overflowX:"hidden"}} >

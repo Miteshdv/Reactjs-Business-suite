@@ -57,7 +57,7 @@ class ShoppingCartView extends React.Component{
 								      	
 										]
 						ReactDOM.render(
-							<Combobox value = "green" valueField = 'id' textField = 'name' data ={options}/>, eParentElement);
+							<Combobox value = "green" valueField = 'id' textField = 'name' data ={options} onChange = {function(){}}/>, eParentElement);
 						params.addRenderedRowListener('renderedRowRemoved', function () {
 											            ReactDOM.unmountComponentAtNode(eParentElement);
 											        });
@@ -107,7 +107,7 @@ class ShoppingCartView extends React.Component{
 
 ShoppingCartView.propTypes = {  
   loadGridData: React.PropTypes.func,
-  gridData:React.PropTypes.Array
+  gridData:React.PropTypes.array
 }
 
 export default ShoppingCartView

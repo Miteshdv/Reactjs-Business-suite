@@ -18,6 +18,7 @@ export default function shoppingCartData(state = {isFetching:false,items:[]},act
         items: action.posts,
         lastUpdated: action.receivedAt
       })
+      break;
     default:
       return state
   }

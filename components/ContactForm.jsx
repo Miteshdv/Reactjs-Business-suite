@@ -90,10 +90,10 @@ var ContactForm = React.createClass({
 
 , renderSelect: function(id, label, values) {
     var options = values.map(function(value) {
-      return <option value={value}>{value}</option>
+      return <option key = {Math.random()+Math.random()} value={value}>{value}</option>
     })
     return this.renderField(id, label,
-      <select className="form-control" id={id} ref={id}>
+      <select key = {Math.random()+Math.random()} className="form-control" id={id} ref={id}>
         {options}
       </select>
     )
@@ -102,8 +102,8 @@ var ContactForm = React.createClass({
 , renderRadioInlines: function(id, label, kwargs) {
     var radios = kwargs.values.map(function(value) {
       var defaultChecked = (value == kwargs.defaultCheckedValue)
-      return <label className="radio-inline">
-        <input type="radio" ref={id + value} name={id} value={value} defaultChecked={defaultChecked}/>
+      return <label className="radio-inline" key = {Math.random()+Math.random()}>
+        <input type="radio" key = {Math.random()+Math.random()} ref={id + value} name={id} value={value} defaultChecked={defaultChecked}/>
         {value}
       </label>
     })
@@ -113,7 +113,7 @@ var ContactForm = React.createClass({
 , renderField: function(id, label, field) {
     return <div className={this.$c('form-group', {'has-error': id in this.state.errors})}>
       <label htmlFor={id} className="col-sm-4 control-label">{label}</label>
-      <div className="col-sm-6">
+      <div className="col-sm-6" key = {Math.random()+Math.random()}>
         {field}
       </div>
     </div>

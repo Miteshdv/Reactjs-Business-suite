@@ -7,40 +7,9 @@ var TreeMenu = require('react-tree-menu').TreeMenu,
     TreeNode = require('react-tree-menu').TreeNode;
 
 
-class TreeView extends React.Component { 
+class ProductCommodityTreeView extends React.Component { 
 
-constructor() {
-     super()
-     
-     this.state = {  dynamicTreeDataMap:[
-                                        {
-                                          label : "Option 1"
-                                        },
-                                        {
-                                          label : "Option 2",
-                                          children : [
-                                            {                                              
-                                              label: "Sub Option A",
-                                              children: [
-                                                {
-                                                  label: "Third Level Option 1",
-                                                  checkbox : true
-                                                },
-                                                {
-                                                  label: "Third Level Option 2",
-                                                  checkbox : true
-                                                }
-                                              ]
-                                            },
-                                            {                                              
-                                              label: "Sub Option B"
-                                            }
-                                          ]
-                                        }
-                                      ]
-                  }
-     
-   }
+
 
    
     _handleDynamicObjectTreeNodePropChange(messageWindowKey, stateKey, propName, lineage) {
@@ -117,21 +86,35 @@ constructor() {
 
     this.setState(mutation)
   }
+
+  componentDidMount()
+  {  
+    this.props.loadTreeData();
+  }
    
     render(){
         return (
                 <TreeMenu
+                ref={(ref) => this.productCommodityTreeView = ref}   
                 expandIconClass="fa fa-chevron-right"
                 collapseIconClass="fa fa-chevron-down"
                 onTreeNodeClick={this._setLastActionState.bind(this, "clicked", "5")}
                 onTreeNodeCollapseChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "dynamicTreeDataMap","collapsed")}
                 onTreeNodeCheckChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "dynamicTreeDataMap","checked")}
-                data={this.state.dynamicTreeDataMap} />
+                data={this.props.treeData} />
         );
     }
 
 }
 
-export default TreeView
+
+ProductCommodityTreeView.propTypes = {  
+  loadTreeData: React.PropTypes.func,
+  treeData:React.PropTypes.array
+}
+
+
+
+export default ProductCommodityTreeView
 
 
