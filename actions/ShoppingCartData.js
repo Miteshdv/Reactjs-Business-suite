@@ -17,7 +17,8 @@ function receivePosts(json) {
   }
 }
 
-export function getGridData() { 
+export function getShoppingCartData() { 
+  
   return dispatch => {
     dispatch(requestPosts())
     return fetch('https://www.reddit.com/r/reactjs.json')

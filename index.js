@@ -5,7 +5,7 @@ import App from './components/App.jsx'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux'
 import configureStore from './store/configureStore.js'
-import GridDataReducer from './reducers/GridDataReducer'
+import AppRootReducer from './reducers/AppRootReducer.js'
 const treeCss = require('./assets/styles/tree-view.css')
 const productListCss = require('./assets/styles/ProductList.css')
 const reactGridLayoutStyles = require('./assets/styles/ReactGridLayoutStyles.css')

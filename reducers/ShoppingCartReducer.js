@@ -1,12 +1,11 @@
-import { combineReducers } from 'redux'
 import {  
   REQUEST_POSTS, RECEIVE_POSTS
-} from '../actions/GetGridData'
+} from '../actions/ShoppingCartData'
 
 
-function gridData(state = {isFetching:false,items:[]},action)
+export default function shoppingCartData(state = {isFetching:false,items:[]},action)
 {
-
+ 
 	switch (action.type) {    
    
     case REQUEST_POSTS:
@@ -23,10 +22,3 @@ function gridData(state = {isFetching:false,items:[]},action)
       return state
   }
 }
-
-
-const GridDataReducer = combineReducers({
- 	gridData
-})
-
-export default GridDataReducer

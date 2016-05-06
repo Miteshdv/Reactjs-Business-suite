@@ -1,13 +1,14 @@
 import { connect } from 'react-redux'
-import { getGridData} from '../actions/GetGridData'
+import { getShoppingCartData} from '../actions/ShoppingCartData'
 import ShoppingCartView from '../components/ShoppingCartView.jsx';
 
 
 
 const mapStateToProps = (state) => {
-  state.gridData.items = state.gridData.items.concat(state.gridData.items).concat(state.gridData.items)
+  
+  state.shoppingCartData.items = state.shoppingCartData.items.concat(state.shoppingCartData.items).concat(state.shoppingCartData.items)
   return {
-    gridData: state.gridData.items
+    gridData: state.shoppingCartData.items
   }
 }
 
@@ -15,7 +16,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadGridData: () => {  
     	
-      dispatch(getGridData())
+      dispatch(getShoppingCartData())
     }
   }
 }
