@@ -1,25 +1,196 @@
 [
   {
-    "label": "Option 1"
-  },
-  {
-    "label": "Option 2",
+    "label": "Books",
     "children": [
       {
-        "label": "Sub Option A",
-        "children": [
-          {
-            "label": "Third Level Option 1",
-            "checkbox": true
-          },
-          {
-            "label": "Third Level Option 2",
-            "checkbox": true
-          }
-        ]
+        "label": "Adventure"
       },
       {
-        "label": "Sub Option B"
+        "label": "Action"
+      },
+      {
+        "label": "Thriller"
+      },
+      {
+        "label": "Sports"
+      },
+      {
+        "label": "Science"
+      },
+      {
+        "label": "Spiritual"
+      },
+      {
+        "label": "Children"
+      }
+    ]
+  },
+  {
+    "label": "Games",
+    "children": [
+      {
+        "label": "Action"
+      },
+      {
+        "label": "Adventure"
+      },
+      {
+        "label": "Puzzle"
+      },
+      {
+        "label": "Strategy"
+      },
+      {
+        "label": "Card Base"
+      },
+      {
+        "label": "Racing"
+      },
+      {
+        "label": "Shooting"
+      },
+      {
+        "label": "Hunting"
+      },
+      {
+        "label": "Sports"
+      }
+    ]
+  },
+  {
+    "label": "Electronics",
+    "children": [
+      {
+        "label": "Television"
+      },
+      {
+        "label": "Computer"
+      },
+      {
+        "label": "Mobile"
+      },
+      {
+        "label": "I Pads"
+      },
+      {
+        "label": "I Tabs"
+      },
+      {
+        "label": "PlayStation"
+      }
+    ]
+  },
+  {
+    "label": "House Hold Appliances",
+    "children": [
+      {
+        "label": "Mixer"
+      },
+      {
+        "label": "Cooker"
+      },
+      {
+        "label": "Juicer"
+      },
+      {
+        "label": "Stove"
+      },
+      {
+        "label": "Fans"
+      },
+      {
+        "label": "Air Conditioners"
+      },
+      {
+        "label": "Air Coolers"
+      }
+    ]
+  },
+  {
+    "label": "Movies",
+    "children": [
+      {
+        "label": "Adventure"
+      },
+      {
+        "label": "Action"
+      },
+      {
+        "label": "Thriller"
+      },
+      {
+        "label": "Sports"
+      },
+      {
+        "label": "Science"
+      },
+      {
+        "label": "Spiritual"
+      },
+      {
+        "label": "Children"
+      }
+    ]
+  },
+  {
+    "label": "Fashion",
+    "children": [
+      {
+        "label": "clothes",
+        "children": [
+          {
+            "label": "Trousers",
+            "children": [
+              {
+                "label": "Male",
+                "checkbox": true
+              },
+              {
+                "label": "Female",
+                "checkbox": true
+              }
+            ]
+          },
+          {
+            "label": "Shirts",
+            "children": [
+              {
+                "label": "Male",
+                "checkbox": true
+              },
+              {
+                "label": "Female",
+                "checkbox": true
+              }
+            ]
+          },
+          {
+            "label": "T-shirts",
+            "children": [
+              {
+                "label": "Male",
+                "checkbox": true
+              },
+              {
+                "label": "Female",
+                "checkbox": true
+              }
+            ]
+          },
+          {
+            "label": "Jeans",
+            "children": [
+              {
+                "label": "Male",
+                "checkbox": true
+              },
+              {
+                "label": "Female",
+                "checkbox": true
+              }
+            ]
+          }
+        ]
       }
     ]
   }

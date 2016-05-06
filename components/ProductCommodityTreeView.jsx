@@ -10,7 +10,20 @@ var TreeMenu = require('react-tree-menu').TreeMenu,
 class ProductCommodityTreeView extends React.Component { 
 
 
+  constructor() {
+     super()
+     
+     this.state = {treeData:[]};
+     
+   }
 
+
+    componentWillReceiveProps(nextProps) {
+ if(nextProps.treeData)
+ {
+  this.setState({treeData:nextProps.treeData})
+ }
+}
    
     _handleDynamicObjectTreeNodePropChange(messageWindowKey, stateKey, propName, lineage) {
 
@@ -99,14 +112,17 @@ class ProductCommodityTreeView extends React.Component {
                 expandIconClass="fa fa-chevron-right"
                 collapseIconClass="fa fa-chevron-down"
                 onTreeNodeClick={this._setLastActionState.bind(this, "clicked", "5")}
-                onTreeNodeCollapseChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "dynamicTreeDataMap","collapsed")}
-                onTreeNodeCheckChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "dynamicTreeDataMap","checked")}
-                data={this.props.treeData} />
+                onTreeNodeCollapseChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "treeData","collapsed")}
+                onTreeNodeCheckChange={this._handleDynamicObjectTreeNodePropChange.bind(this, 5, "treeData","checked")}
+                data={this.state.treeData} />
         );
     }
 
 }
 
+ProductCommodityTreeView.defaultProps = {
+  treeData:[]
+}
 
 ProductCommodityTreeView.propTypes = {  
   loadTreeData: React.PropTypes.func,

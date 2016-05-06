@@ -4,11 +4,26 @@ import ProductCommodityTreeView from '../components/ProductCommodityTreeView.jsx
 
 
 
-const mapStateToProps = (state) => {   
-
+const mapStateToProps = (state) => { 
+ 
+  applyCheckboxAndCollapse(state.productCommodityData.commodityData)
   return {
     treeData: state.productCommodityData.commodityData
   }
+}
+
+let applyCheckboxAndCollapse =  function(data,checkbox)
+{
+  
+  data.forEach(function(data){
+    data.collapsed = true;
+    //data.checkbox = checkbox?true:false;
+    data.checkbox = true
+    if(data.children)
+    {
+      applyCheckboxAndCollapse(data.children,true)
+    }
+  })
 }
 
 const mapDispatchToProps = (dispatch) => { 
