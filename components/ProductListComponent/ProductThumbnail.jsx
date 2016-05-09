@@ -17,24 +17,37 @@ var ProductThumbnail = React.createClass({
   },
 
   componentWillReceiveProps: function(nextProps) {
-    if (nextProps.data !== this.state.data) {
+    
+    if (nextProps.data !== this.state.data) {     
       this.setState({data: nextProps.data })
     }
   },
+
+  
 
   handleClick: function() {
     this.props.handleClick(this.state.data);
   },
 
   render: function() {
+    var currency = '$'
     return (
       <div 
             onClick={this.handleClick}
             style= {{border:"1px solid",margin:"25px",height:"130px"}}             
            >
-        <div >
+        <div style = {{width:"100%"}}>
           <img src={this.state.data.url} style = {{width:"100%",height:"100px"}}/>
-          
+          <div style = {{width:"100%",float:"right","margin":"4px",padding:"4px",textAlign:"center"}}>
+            Product Name
+            <div>
+              <span style= {{fontWeight:'bold'}}>Price:</span>
+              <span style = {{marginLeft:"8px"}}>{currency}</span> 
+              <span>{this.state.data.price}</span>  
+              <input type="checkbox" style = {{marginLeft:"8px"}}/>   
+            </div>        
+          </div>
+
         </div>
       </div>
     )

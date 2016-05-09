@@ -17,8 +17,8 @@ let applyCheckboxAndCollapse =  function(data,checkbox)
   
   data.forEach(function(data){
     data.collapsed = true;
-    //data.checkbox = checkbox?true:false;
-    data.checkbox = true
+    data.checkbox = checkbox?true:false;
+    //data.checkbox = true
     if(data.children)
     {
       applyCheckboxAndCollapse(data.children,true)

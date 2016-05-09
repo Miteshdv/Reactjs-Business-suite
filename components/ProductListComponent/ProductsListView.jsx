@@ -32,10 +32,16 @@ class ProductListView extends React.Component
       render() {        
         var that = this;
         var imageList = [];
-
+       
         for(var  i = 0;i < this.state.productData.length ;i++)
         { 
-            var data = this.state.productData[i]
+            var data = this.state.productData[i];
+            var url = data.url;     
+            var urlTrimmed = url.substring(0 ,url.lastIndexOf('/'));
+            var price = urlTrimmed.substring(urlTrimmed.lastIndexOf('/')+1,urlTrimmed.length);
+            price = price/100;
+            data.price = price;
+
             imageList.push( <TileLayoutItem key = {data.id}><ProductThumbnail 
                                 data={data}
                                 id={data.id}

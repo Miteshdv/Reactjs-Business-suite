@@ -19,20 +19,24 @@ class App extends React.Component {
 
   constructor() {
      super()
+     console.log('I am rezied ' +window.innerHeight)
      var viewHeight = window.innerHeight;
      this.state = {windowHeight:viewHeight,tabValue:"productView"};
-     window.onresize = this.resizeView.bind(this);
+     
+     
    }
 
    componentDidMount() {
+
+      window.onresize = this.resizeView.bind(this)
       this.productViewBtn.className = "breadCrumbBtnSelected"
    }
 
 
    resizeView()
-   {  
-     this.setState({windowHeight:window.innerHeight})
-     
+   { 
+    
+     this.setState({windowHeight:window.innerHeight})     
    }
     
 
@@ -71,11 +75,10 @@ class App extends React.Component {
                   <button  className = {"breadCrumbBtn"} ref={(ref) => this.checkoutViewBtn = ref}  id ="checkoutViewBtn" onClick={this.changeStackView.bind(this)}>Checkout</button>
                </div>
                 <MaterialUITabs inkBarStyle = {{display:"none"}} tabItemContainerStyle = {{display:"none"}}
-                                value={this.state.tabValue}
-                               
+                                value={this.state.tabValue}                               
                                 ref={(ref) => this.viewNavigator = ref} 
                                 style = {{margin:"6px 0px 2px 0px"}}>
-                  <MaterialUITab value="productView"><ProductSelectionView/></MaterialUITab>
+                  <MaterialUITab value="productView"><ProductSelectionView windowHeight = {this.state.windowHeight}/></MaterialUITab>
                   <MaterialUITab value="shoppingCartView">
                     <ShoppingCartViewContainer/>
                   </MaterialUITab>
