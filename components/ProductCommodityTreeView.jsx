@@ -76,6 +76,20 @@ class ProductCommodityTreeView extends React.Component {
 
     this.setState(mutation);
 
+    if (propName.indexOf('checked') >= 0) {
+      var selectedItems = [];
+
+      var allChildren = _.flatten(_.pluck(mutation.treeData,'children'));
+      var childWithId = _.find(allChildren,function(child){                                                            
+                                                            if(child.checked == true)
+                                                            {                                                               
+                                                              selectedItems.push(child.searchCriteria)
+                                                            }});
+     
+      
+      this.props.selectProductSearchCategory(selectedItems)
+    }
+
   }
 
   _setLastActionState(action, col, node) {
@@ -88,6 +102,8 @@ class ProductCommodityTreeView extends React.Component {
 
     console.log("Controller View received tree menu " + action + " action: " + node.join(" > "));
 
+    
+
     var key = "lastAction" + col;
 
     var mutation = {};
@@ -98,6 +114,7 @@ class ProductCommodityTreeView extends React.Component {
     };
 
     this.setState(mutation)
+    
   }
 
   componentDidMount()
@@ -126,7 +143,8 @@ ProductCommodityTreeView.defaultProps = {
 
 ProductCommodityTreeView.propTypes = {  
   loadTreeData: React.PropTypes.func,
-  treeData:React.PropTypes.array
+  treeData:React.PropTypes.array,
+  selectProductSearchCategory:React.PropTypes.func
 }
 
 

@@ -37,9 +37,9 @@ var ProductThumbnail = React.createClass({
             style= {{border:"1px solid",margin:"25px",height:"130px"}}             
            >
         <div style = {{width:"100%"}}>
-          <img src={this.state.data.url} style = {{width:"100%",height:"100px"}}/>
+          <img src={this.state.data.src.small} style = {{width:"100%",height:"100px"}}/>
           <div style = {{width:"100%",float:"right","margin":"4px",padding:"4px",textAlign:"center"}}>
-            Product Name
+           {this.state.data.photographer}
             <div>
               <span style= {{fontWeight:'bold'}}>Price:</span>
               <span style = {{marginLeft:"8px"}}>{currency}</span> 

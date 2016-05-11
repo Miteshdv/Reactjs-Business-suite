@@ -14,29 +14,31 @@ class ProductListView extends React.Component
         }
       }
 
+      componentWillReceiveProps(nextProps) {  
 
-      componentWillMount()
-      {
-        this.setState({
-        wrapperClass: this.props.wrapperClass || this.props.defautImgWrapper,
-        productData: this.props.productData
-        })
-      }
 
-      componentWillReceiveProps(nextProps) {
-        if (nextProps.productData !== this.state.productData) {
-          this.setState({productData: nextProps.productData })
+        if (nextProps.productsData !== this.props.productsData) {  
+               
+          this.forceUpdate();
+        }
+
+        
+         if (nextProps.commoditySelectedItems !== this.props.commoditySelectedItems) {  
+            
+            
+           this.props.loadProductsView(nextProps.commoditySelectedItems.join(','));
         }
       }
 
+      
       render() {        
         var that = this;
         var imageList = [];
        
-        for(var  i = 0;i < this.state.productData.length ;i++)
-        { 
-            var data = this.state.productData[i];
-            var url = data.url;     
+        for(var  i = 0;i < this.props.productsData.length ;i++)
+        {  
+            var data = this.props.productsData[i];
+            var url = data.src.small;     
             var urlTrimmed = url.substring(0 ,url.lastIndexOf('/'));
             var price = urlTrimmed.substring(urlTrimmed.lastIndexOf('/')+1,urlTrimmed.length);
             price = price/100;
@@ -69,15 +71,17 @@ class ProductListView extends React.Component
 ProductListView.propTypes = {
    wrapperClass:React.PropTypes.string,
    defautImgWrapper: React.PropTypes.string,
-   productData: React.PropTypes.array,
+   productsData: React.PropTypes.array,
    imgClass:React.PropTypes.string,
    gridClass:React.PropTypes.string,
-   perPageProducts:React.PropTypes.number
+   perPageProducts:React.PropTypes.number,
+   loadProductsView:React.PropTypes.func,
+   commoditySelectedItems:React.PropTypes.array
 }
 
 ProductListView.defaultProps = {  
    defautImgWrapper: 'clearfix',
-  
+   productsData:[]
 }
 
 

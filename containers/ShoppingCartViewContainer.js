@@ -6,7 +6,7 @@ import ShoppingCartView from '../components/ShoppingCartView.jsx';
 
 const mapStateToProps = (state) => {
   
-  state.shoppingCartData.items = state.shoppingCartData.items.concat(state.shoppingCartData.items).concat(state.shoppingCartData.items)
+  //state.shoppingCartData.items = state.shoppingCartData.items.concat(state.shoppingCartData.items).concat(state.shoppingCartData.items)
   return {
     gridData: state.shoppingCartData.items
   }

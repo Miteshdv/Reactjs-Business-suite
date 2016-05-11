@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { getProductsCommodityData} from '../actions/ProductsCommodityData'
+import { getProductsCommodityData , selectedProductCategory} from '../actions/ProductsCommodityData'
 import ProductCommodityTreeView from '../components/ProductCommodityTreeView.jsx';
 
 
@@ -12,16 +12,17 @@ const mapStateToProps = (state) => {
   }
 }
 
-let applyCheckboxAndCollapse =  function(data,checkbox)
+let applyCheckboxAndCollapse =  function(data,checkbox,parentName)
 {
   
   data.forEach(function(data){
     data.collapsed = true;
     data.checkbox = checkbox?true:false;
+    data.searchCriteria = data.label+'+'+parentName
     //data.checkbox = true
     if(data.children)
     {
-      applyCheckboxAndCollapse(data.children,true)
+      applyCheckboxAndCollapse(data.children,true,data.label)
     }
   })
 }
@@ -31,6 +32,9 @@ const mapDispatchToProps = (dispatch) => {
     loadTreeData: () => {  
     	
       dispatch(getProductsCommodityData())
+    },
+    selectProductSearchCategory : (selectedItem) =>  {      
+      dispatch(selectedProductCategory(selectedItem))
     }
   }
 }
