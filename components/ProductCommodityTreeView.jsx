@@ -19,11 +19,11 @@ class ProductCommodityTreeView extends React.Component {
 
 
     componentWillReceiveProps(nextProps) {
- if(nextProps.treeData)
- {
-  this.setState({treeData:nextProps.treeData})
- }
-}
+     if(nextProps.treeData)
+     {
+      this.setState({treeData:nextProps.treeData})
+     }
+    }
    
     _handleDynamicObjectTreeNodePropChange(messageWindowKey, stateKey, propName, lineage) {
 

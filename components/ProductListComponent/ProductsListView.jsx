@@ -2,16 +2,39 @@ var React = require('react');
 var ProductThumbnail = require('./ProductThumbnail.jsx');
 var TileLayout = require('pui-react-tile-layout').TileLayout;
 var TileLayoutItem = require('pui-react-tile-layout').TileLayoutItem;
-
+import SkyLightStateless from 'react-skylight';
+import ProductDetailsView from './ProductDetailsView.jsx'
 
 class ProductListView extends React.Component
 {
+      constructor() {
+         super()         
+         this.state = {productDetails:{},
+                       };
+         
+       }
 
+       calculateAspectRatioFit(srcWidth, srcHeight, maxWidth, maxHeight) {
 
-      handleClick(data) {
-        if(this.props.handleClickImage){
-          this.props.handleClickImage(data);
+              var ratio = Math.min(maxWidth / srcWidth, maxHeight / srcHeight);
+              return { width: (srcWidth*ratio), height: (srcHeight*ratio) };
         }
+      
+      handleClick(data) {    
+
+          var proportinalyResizedSize = this.calculateAspectRatioFit( data.width,data.height,1000,700)
+          proportinalyResizedSize.height>=700?proportinalyResizedSize.height=680:'';
+          this.setState({dialogStyles:{width:proportinalyResizedSize.width+'px',height:proportinalyResizedSize.height+58+'px', top: '30%'}})
+          data.height = proportinalyResizedSize.height-90;
+          data.width = proportinalyResizedSize.width-30;
+          this.setState({'productDetails':data});
+          this.refs.dialogWithCallBacks.show()
+        
+      }
+
+      _executeBeforeModalOpen()
+      {
+
       }
 
       componentWillReceiveProps(nextProps) {  
@@ -49,7 +72,7 @@ class ProductListView extends React.Component
                                 id={data.id}
                                 imgClass={that.props.imgClass}
                                 gridClass={that.props.gridClass}
-                                handleClick={that.handleClick}                                
+                                handleClick={that.handleClick.bind(this)}                                                             
                                 /></TileLayoutItem>)
         }
 
@@ -60,9 +83,20 @@ class ProductListView extends React.Component
    
 
         return (
-         <TileLayout columns={6} noGutter >
-                 {imageList}  
+          <div>
+          <TileLayout columns={6} noGutter >
+                 {imageList.length>0?imageList:<span style = {{margin:"5px",fontWeight:"bold"}}>Please Select Products Category</span>}  
            </TileLayout>
+            <SkyLightStateless        
+              ref="dialogWithCallBacks"
+              dialogStyles={this.state.dialogStyles} 
+              titleStyle = {{marginTop:"10px"}}             
+              beforeOpen={this._executeBeforeModalOpen}
+              title="Product Details">
+               <ProductDetailsView productDetails ={this.state.productDetails}/> 
+            </SkyLightStateless>
+          </div>
+         
         )
       }     
   }
@@ -76,7 +110,8 @@ ProductListView.propTypes = {
    gridClass:React.PropTypes.string,
    perPageProducts:React.PropTypes.number,
    loadProductsView:React.PropTypes.func,
-   commoditySelectedItems:React.PropTypes.array
+   commoditySelectedItems:React.PropTypes.array,
+   getProductDetails:React.PropTypes.func
 }
 
 ProductListView.defaultProps = {  

@@ -10,8 +10,6 @@ import  'react-widgets/lib/less/react-widgets.less';
 
 class ProductSelectionView extends React.Component { 
   
- 
-
    render() {
    
       return (
@@ -19,6 +17,7 @@ class ProductSelectionView extends React.Component {
            
                <div  style={{float:"none",width:"100%"}}>   
                 <div  style= {{width:"14.5%" ,height:this.props.windowHeight*0.88,float:"left",border:"1px solid",margin:"0px 2px 0px 0px",overflow:"auto"}} >
+                  <span style = {{margin:"2px",fontWeight:"bold"}}>Products Category</span>
                   <ProductCommodityTreeViewContainer/>
                   
                 </div>
@@ -29,7 +28,7 @@ class ProductSelectionView extends React.Component {
                     imgClass="responsive"
                     style= {{width:"100%"}}
                     perPageProducts = {10}
-                    viewHeight = {this.props.windowHeight*0.926}
+                    viewHeight = {this.props.windowHeight*0.926}                    
                    />
                   
 

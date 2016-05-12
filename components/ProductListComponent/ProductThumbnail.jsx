@@ -26,18 +26,16 @@ var ProductThumbnail = React.createClass({
   
 
   handleClick: function() {
-    this.props.handleClick(this.state.data);
+    this.props.handleClick(Object.assign({}, this.state.data));
   },
 
   render: function() {
     var currency = '$'
     return (
-      <div 
-            onClick={this.handleClick}
-            style= {{border:"1px solid",margin:"25px",height:"130px"}}             
+      <div style= {{border:"1px solid",margin:"6px"}}             
            >
-        <div style = {{width:"100%"}}>
-          <img src={this.state.data.src.small} style = {{width:"100%",height:"100px"}}/>
+        <div style = {{width:"100%",textAlign:"center",marginTop:"5px"}}>
+          <img src={this.state.data.src.small} style = {{maxWidth:"100%",maxHeight:"100px"}}  onClick={this.handleClick}/>
           <div style = {{width:"100%",float:"right","margin":"4px",padding:"4px",textAlign:"center"}}>
            {this.state.data.photographer}
             <div>
@@ -49,6 +47,8 @@ var ProductThumbnail = React.createClass({
           </div>
 
         </div>
+
+
       </div>
     )
   }
