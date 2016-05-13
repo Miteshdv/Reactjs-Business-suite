@@ -6,16 +6,7 @@ import 'ag-grid/dist/styles/theme-fresh.css';
 import {IntlProvider, FormattedNumber, FormattedDate ,FormattedPlural} from 'react-intl';
 import Combobox  from 'react-widgets/lib/Combobox';
 
-class ShoppingCartView extends React.Component{
-	
-	constructor() {
-		 super()
-		 
-	      this.state = { 
-	      colors: [],   
-			agDataGridColumns:[
-				{headerName: "Reditt Createer", field: "author" ,width:200},
-				{headerName: "Created on", field: "created",width:200 , cellRenderer: function(params) {
+{/*cellRenderer: function(params) {
 
 
 
@@ -35,13 +26,8 @@ class ShoppingCartView extends React.Component{
 						return formattedDate
 
 					}
-				},
-				{headerName: "URL", field: "url",width:200 ,cellRenderer: function(params) {
 
-					return '<a href='+params.value+' target="_blank">'+params.value+'</a>'
-				}},
-				{	
-					headerName: "Values", width:200 ,cellRenderer:function(params)
+headerName: "Values", width:200 ,cellRenderer:function(params)
 					{	
 						
 						 var eParentElement = params.eGridCell;
@@ -64,33 +50,40 @@ class ShoppingCartView extends React.Component{
 
 						return null
 					}
-					
-				}
+
+				*/}
+
+class ShoppingCartView extends React.Component{
+	
+	constructor() {
+		 super()
+		 
+	      this.state = { 
+	      colors: [],   
+			agDataGridColumns:[
+				{headerName: "Product Id", field: "id" ,width:200},
+				{headerName: "Product Name", field: "photographer",width:300},
+				{headerName: "Product URL", field: "url",width:400 ,cellRenderer: function(params) {
+
+					return '<a href='+params.value+' target="_blank">'+params.value+'</a>'
+				}},
+				{headerName: "No. of Items",width:200},
+				{headerName: "Total Price", field: "price",width:200},
+				{headerName: "Add/Remove",width:200}				
 
 			]
 	        }
 
      }
-
-     
-
-     gridReady()
-     {	
-     	//debugger
-     	//this.reactDG.showLoading(true);
-     	this.props.loadGridData()
-     }
-
 	
 
 	render(){
 		return  (		
 					   
-						    <div className="ag-fresh" style = {{"width":"100%","height":300}}>
+						    <div className="ag-fresh" style = {{"width":"100%","height":500}}>
 							    <AgGridReact
 							    	ref={(ref) => this.reactDG = ref} 	
-							    	suppressLoadingOverlay= {true}
-							    	onGridReady = {this.gridReady.bind(this)}	
+							    	suppressLoadingOverlay= {true}							    	
 							    	rowData = {this.props.gridData}					    	
 								    // column definitions and row data are immutable, the grid
 								    // will update when these lists change
@@ -105,8 +98,7 @@ class ShoppingCartView extends React.Component{
 }
 
 
-ShoppingCartView.propTypes = {  
-  loadGridData: React.PropTypes.func,
+ShoppingCartView.propTypes = {   
   gridData:React.PropTypes.array
 }
 

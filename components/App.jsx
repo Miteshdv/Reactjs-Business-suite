@@ -53,7 +53,7 @@ class App extends React.Component {
       var view = event.currentTarget.id;
       event.currentTarget.className = "breadCrumbBtnSelected";
       var stateViewValue = view.substring(0,view.indexOf('Btn'));
-      this.setState({tabValue: stateViewValue});
+      this.setState({tabValue: stateViewValue});     
   }
  
    render() {
@@ -71,7 +71,7 @@ class App extends React.Component {
                
                <div style = {{margin:"4px 0px 4px 0px",width:"100%",float:"left"}} >
                   <button className = {"breadCrumbBtn"} ref={(ref) => this.productViewBtn = ref} id = "productViewBtn" onClick={this.changeStackView.bind(this)}>Products View</button>
-                   <button className = {"breadCrumbBtn"} ref={(ref) => this.shoppingCartViewBtn = ref}  id ="shoppingCartViewBtn" onClick={this.changeStackView.bind(this)}>Shopping Cart</button>
+                   <button className = {"breadCrumbBtn"} ref={(ref) => this.shoppingCartViewBtn = ref}  id ="shoppingCartViewBtn" onClick={this.changeStackView.bind(this)}>Shopping Cart{this.props.shoppingCartsItems >0?"("+this.props.shoppingCartsItems+")":''}</button>
                   <button  className = {"breadCrumbBtn"} ref={(ref) => this.checkoutViewBtn = ref}  id ="checkoutViewBtn" onClick={this.changeStackView.bind(this)}>Checkout</button>
                </div>
                 <MaterialUITabs inkBarStyle = {{display:"none"}} tabItemContainerStyle = {{display:"none"}}
@@ -98,6 +98,14 @@ App.childContextTypes = {
     muiTheme: React.PropTypes.object
 };
 
+App.propTypes = { 
+  loadShoppingCartData:React.PropTypes.func,
+  shoppingCartsItems:React.PropTypes.number
+}
+
+App.defaultProps = {
+  shoppingCartsItems:0
+}
 
 export default App
 

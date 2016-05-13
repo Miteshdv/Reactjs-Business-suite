@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
-import { getProductsViewData} from '../actions/ProductsViewData'
+import { getProductsViewData} from '../actions/ProductsViewData';
+import { updateShoppingCart} from '../actions/AppActionData'
 import ProductsListView from '../components/ProductListComponent/ProductsListView.jsx';
 
 
@@ -18,6 +19,11 @@ const mapDispatchToProps = (dispatch) => {
   return {
     loadProductsView: (query) => {      
       dispatch(getProductsViewData(query))
+    },
+
+    updateShoppingCart:(productSelected,product) =>
+    { 
+     dispatch(updateShoppingCart(productSelected,product))
     }
   }
 }

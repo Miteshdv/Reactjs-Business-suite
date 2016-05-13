@@ -29,6 +29,10 @@ var ProductThumbnail = React.createClass({
     this.props.handleClick(Object.assign({}, this.state.data));
   },
 
+  selectProduct:function(event) {
+    this.props.productSelection(event.currentTarget.checked,this.state.data)
+  },
+
   render: function() {
     var currency = '$'
     return (
@@ -42,7 +46,7 @@ var ProductThumbnail = React.createClass({
               <span style= {{fontWeight:'bold'}}>Price:</span>
               <span style = {{marginLeft:"8px"}}>{currency}</span> 
               <span>{this.state.data.price}</span>  
-              <input type="checkbox" style = {{marginLeft:"8px"}}/>   
+              <input type="checkbox" style = {{marginLeft:"8px"}} onChange = {this.selectProduct}/>   
             </div>        
           </div>
 

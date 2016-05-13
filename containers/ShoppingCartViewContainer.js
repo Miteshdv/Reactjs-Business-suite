@@ -1,29 +1,18 @@
-import { connect } from 'react-redux'
-import { getShoppingCartData} from '../actions/ShoppingCartData'
+import { connect } from 'react-redux';
 import ShoppingCartView from '../components/ShoppingCartView.jsx';
 
 
 
-const mapStateToProps = (state) => {
-  
-  //state.shoppingCartData.items = state.shoppingCartData.items.concat(state.shoppingCartData.items).concat(state.shoppingCartData.items)
+const mapStateToProps = (state) => {  
+
   return {
-    gridData: state.shoppingCartData.items
+    gridData: state.updateShoppingCart.shoppingCart
   }
 }
 
-const mapDispatchToProps = (dispatch) => { 
-  return {
-    loadGridData: () => {  
-    	
-      dispatch(getShoppingCartData())
-    }
-  }
-}
 
 const ShoppingCartViewContainer = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  mapStateToProps 
 )(ShoppingCartView)
 
 export default ShoppingCartViewContainer
