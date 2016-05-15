@@ -55,6 +55,8 @@ headerName: "Values", width:200 ,cellRenderer:function(params)
 
 class ShoppingCartView extends React.Component{
 	
+	
+
 	constructor() {
 		 super()
 		 
@@ -67,7 +69,25 @@ class ShoppingCartView extends React.Component{
 
 					return '<a href='+params.value+' target="_blank">'+params.value+'</a>'
 				}},
-				{headerName: "No. of Items",width:200},
+				{headerName: "No. of Items",filed:"numberOfItems",width:200,cellRenderer:function(params)
+					{	
+						 	
+						 var eParentElement = params.eGridCell;						
+						ReactDOM.render(
+							<input type="number" name="quantity" min="1" value = {params.value?params.value:1} data-gridData = {JSON.stringify(params.data)} step="1" onChange={function(event){
+								
+								var data = JSON.parse(event.currentTarget.dataset.griddata);								
+								data['numberOfItems'] = event.currentTarget.value;
+								data['price'] = data['price']*event.currentTarget.value
+							}}/>, eParentElement);
+						
+						params.addRenderedRowListener('renderedRowRemoved', () => {
+							            ReactDOM.unmountComponentAtNode(eParentElement);
+							        });
+
+						return null
+					}
+				},
 				{headerName: "Total Price", field: "price",width:200},
 				{headerName: "Add/Remove",width:200}				
 
