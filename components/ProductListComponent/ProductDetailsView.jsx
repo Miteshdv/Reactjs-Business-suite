@@ -1,7 +1,8 @@
 var React = require('react');
 
 class ProductDetailsView extends React.Component
-{	 	
+{	 
+
 
 	 render() {      
 

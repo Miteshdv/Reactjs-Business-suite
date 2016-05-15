@@ -27,10 +27,12 @@ var ProductThumbnail = React.createClass({
 
   handleClick: function() {
     this.props.handleClick(Object.assign({}, this.state.data));
+
   },
 
   selectProduct:function(event) {
     this.props.productSelection(event.currentTarget.checked,this.state.data)
+
   },
 
   render: function() {

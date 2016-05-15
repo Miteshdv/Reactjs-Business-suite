@@ -32,6 +32,7 @@ class ProductListView extends React.Component
         
       }
 
+
       updateShoppingCart(productSelected,product)
       {
         this.props.updateShoppingCart(productSelected,product);
@@ -39,6 +40,7 @@ class ProductListView extends React.Component
 
 
       
+
 
       _executeBeforeModalOpen()
       {
@@ -82,6 +84,7 @@ class ProductListView extends React.Component
                                 gridClass={that.props.gridClass}
                                 handleClick={that.handleClick.bind(this)}  
                                 productSelection={that.updateShoppingCart.bind(this)}                                                           
+
                                 /></TileLayoutItem>)
         }
 
