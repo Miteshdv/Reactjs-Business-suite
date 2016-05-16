@@ -17,7 +17,7 @@ function receiveCommodityData(json) {
 export function getProductsCommodityData() { 
   
   return dispatch => {    
-    return fetch('http://169.161.232.42:8080/crc/ProductCommodityData.json')
+    return fetch('https://raw.githubusercontent.com/Miteshdv/Reactjs-Business-suite/master/data/ProductsViewData/ProductCommodityData.json')
       .then(response => response.json())
       .then(json => dispatch(receiveCommodityData(json)))
   }

@@ -57,7 +57,9 @@
     "redux-thunk": "latest",
     "style-loader": "0.x.x",
     "url-loader": "0.x.x",
-    "react-skylight":"latest"
+    "react-skylight":"latest",
+    "react-tap-event-plugin":"latest",
+    "less":"latest"
   },
   "devDependencies": {
     "babel-core": "^6.3.26",
