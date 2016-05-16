@@ -12,8 +12,6 @@ function receiveCommodityData(json) {
   }
 }
 
-
-
 export function getProductsCommodityData() { 
   
   return dispatch => {    
