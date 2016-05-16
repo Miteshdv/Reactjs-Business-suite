@@ -5,7 +5,7 @@ import 'ag-grid/dist/styles/ag-grid.css';
 import 'ag-grid/dist/styles/theme-fresh.css';
 import {IntlProvider, FormattedNumber, FormattedDate ,FormattedPlural} from 'react-intl';
 import Combobox  from 'react-widgets/lib/Combobox';
-
+import ShoppingCartItemIncrementRenderer  from './ShoppingCartItemIncrementRenderer.jsx';
 {/*cellRenderer: function(params) {
 
 
@@ -69,17 +69,12 @@ class ShoppingCartView extends React.Component{
 
 					return '<a href='+params.value+' target="_blank">'+params.value+'</a>'
 				}},
-				{headerName: "No. of Items",filed:"numberOfItems",width:200,cellRenderer:function(params)
+				{headerName: "No. of Items",field:"numberOfItems",width:200,cellRenderer:function(params)
 					{	
 						 	
-						 var eParentElement = params.eGridCell;						
-						ReactDOM.render(
-							<input type="number" name="quantity" min="1" value = {params.value?params.value:1} data-gridData = {JSON.stringify(params.data)} step="1" onChange={function(event){
-								
-								var data = JSON.parse(event.currentTarget.dataset.griddata);								
-								data['numberOfItems'] = event.currentTarget.value;
-								data['price'] = data['price']*event.currentTarget.value
-							}}/>, eParentElement);
+						 var eParentElement = params.eParentOfValue;
+						 
+						 ReactDOM.render(<ShoppingCartItemIncrementRenderer gridParams ={params}/>, eParentElement);
 						
 						params.addRenderedRowListener('renderedRowRemoved', () => {
 							            ReactDOM.unmountComponentAtNode(eParentElement);
@@ -88,7 +83,9 @@ class ShoppingCartView extends React.Component{
 						return null
 					}
 				},
-				{headerName: "Total Price", field: "price",width:200},
+				{headerName: "Total Price", field: "price",width:200,cellRenderer:function(params){
+					return '$ '+params.value;
+				}},
 				{headerName: "Add/Remove",width:200}				
 
 			]
