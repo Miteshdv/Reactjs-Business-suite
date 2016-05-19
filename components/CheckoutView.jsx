@@ -1,75 +1,56 @@
 
-var React = require('react');
-var  ContactForm = require('./ContactForm.jsx')
+import React from 'react';
 
 
-var CheckoutView = React.createClass({
-  getInitialState: function() {
-    return {
-      email: true
-    , question: true
-    , submitted: null
+class CheckoutView extends React.Component
+{
+    render(){
+        return (
+                  <div class="container">
+                    <div class="row" style={{marginLeft: "30%"}}>
+                        <form role="form">
+                            <div class="col-lg-6">
+                                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+                                <div class="form-group">
+                                    <label for="InputName">Enter Name</label>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required/>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputEmail">Enter Email</label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required/>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputEmail">Confirm Email</label>
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required/>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="InputMessage">Enter Message</label>
+                                    <div class="input-group">
+                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
+                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    </div>
+                                </div>
+                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right"/>
+                            </div>
+                        </form>
+
+                    </div>
+               
+                </div>
+                
+        );
     }
-  }
 
-, render: function() {
-    var submitted
-    if (this.state.submitted !== null) {
-      submitted = <div className="alert alert-success">
-        <p>ContactForm data:</p>
-        <pre><code>{JSON.stringify(this.state.submitted, null, '  ')}</code></pre>
-      </div>
-    }
-
-    return <div>
-      <div className="panel panel-default">
-        <div className="panel-heading clearfix">
-          <h3 className="panel-title pull-left">Contact Form</h3>
-          <div className="pull-right">
-            <label className="checkbox-inline">
-              <input type="checkbox"
-                checked={this.state.email}
-                onChange={this.handleChange.bind(this, 'email')}
-              /> Email
-            </label>
-            <label className="checkbox-inline">
-              <input type="checkbox"
-                checked={this.state.question}
-                onChange={this.handleChange.bind(this, 'question')}
-              /> Question
-            </label>
-          </div>
-        </div>
-        <div className="panel-body">
-          <ContactForm ref="contactForm"
-            email={this.state.email}
-            question={this.state.question}
-            company={this.props.company}
-          />
-        </div>
-        <div className="panel-footer" style = {{marginLeft: "auto",marginRight: "auto"}}>
-          <button type="button" className="btn btn-primary btn-block" onClick={this.handleSubmit} style = {{width:"200px"}}>Submit</button>
-        </div>
-      </div>
-      {submitted}
-    </div>
-  }
-
-, handleChange: function(field, e) {
-    var nextState = {}
-    nextState[field] = e.target.checked
-    this.setState(nextState)
-  }
-
-, handleSubmit: function() {
-    if (this.refs.contactForm.isValid()) {
-      this.setState({submitted: this.refs.contactForm.getFormData()})
-    }
-  }
-})
+}
 
 
-
-
-
-module.exports = CheckoutView;
+export default CheckoutView

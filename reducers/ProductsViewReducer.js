@@ -1,6 +1,6 @@
 import {  RECEIVE_PRODUCTS_DATA } from '../actions/ProductsViewData';
 import {  SELECTED_PRODUCT_CATEGORY } from '../actions/ProductsCommodityData';
-
+import {UPDATE_PRODUCTS_VIEW} from '../actions/AppActionData';
 
 export default function getProductsData(state = {productsData:[]},action)
 {  
@@ -9,10 +9,32 @@ export default function getProductsData(state = {productsData:[]},action)
 		
     case RECEIVE_PRODUCTS_DATA:      
       return Object.assign({}, state, { 
-        productsData: action.productsData       
+        productsData: action.productsData     
       })
-      break;   
+      break; 
+      case UPDATE_PRODUCTS_VIEW:      
+        return Object.assign({}, state, {
+                    productsData:updateProductSelection(Object.assign({},state.productsData), action.product)
+                  })
+    break;  
     default:
       return state
   }
+}
+
+
+function updateProductSelection(productsListData,product)
+{ 
+
+  var productsData  = productsListData.photos.slice(0);
+  for(var p = 0;p<productsData.length;p++)
+  {
+    if(productsData[p].id == product.id)
+    {
+      productsData[p].selected = false;
+      break;
+    }
+  }
+  
+  return productsListData;
 }

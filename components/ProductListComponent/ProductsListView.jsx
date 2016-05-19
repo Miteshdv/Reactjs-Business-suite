@@ -4,12 +4,14 @@ var TileLayout = require('pui-react-tile-layout').TileLayout;
 var TileLayoutItem = require('pui-react-tile-layout').TileLayoutItem;
 import SkyLightStateless from 'react-skylight';
 import ProductDetailsView from './ProductDetailsView.jsx'
+ _ = require('lodash');
 
 class ProductListView extends React.Component
 {
       constructor() {
          super()         
          this.state = {productDetails:{},
+                       selectedItems:[]
                        };
          
        }
@@ -34,32 +36,59 @@ class ProductListView extends React.Component
 
 
       updateShoppingCart(productSelected,product)
-      {
-        this.props.updateShoppingCart(productSelected,product);
+      { 
+        var selectedItems = this.state.selectedItems.slice(0);
+        if(productSelected)
+        {
+          selectedItems.push(product.id)
+          
+        }
+        else
+        {             
+          _.pull(selectedItems, product.id);
+        }
+
+        this.setState({selectedItems:selectedItems},function(){this.props.updateShoppingCart(productSelected,product);})
+        
       }
 
-
-      
-
-
-      _executeBeforeModalOpen()
-      {
-
+      mapShoppingCartSelectedItems(nextProps)
+      {   
+          var itemsToMap =_.map(nextProps.shoppingCartItems,'id');
+           this.setState({selectedItems:itemsToMap})
+          
       }
 
       componentWillReceiveProps(nextProps) {  
-
-
-        if (nextProps.productsData !== this.props.productsData) {  
-               
-          this.forceUpdate();
-        }
-
         
+         var parentArray = [];
+         var childArray = [];
+         this.mapShoppingCartSelectedItems(nextProps);
          if (nextProps.commoditySelectedItems !== this.props.commoditySelectedItems) {  
             
+            for(var q = 0 ;q< nextProps.commoditySelectedItems.length;q++)
+            {
+              var queryArray = nextProps.commoditySelectedItems[q].split('+');
+
+               if(childArray.indexOf(queryArray[0]) == -1)
+               {
+                childArray.push(queryArray[0])
+               }
+
+
+              if(parentArray.indexOf(queryArray[1]) == -1)
+              {
+                parentArray.push(queryArray[1])
+              }
+
+
+            }
+
+            var queryPart1 = childArray.join(',');
+            var queryPart2 = parentArray.join(',');
+            var query = queryPart1 + ' + '+queryPart2;
             
-           this.props.loadProductsView(nextProps.commoditySelectedItems.join(','));
+           this.props.loadProductsView(query);
         }
       }
 
@@ -67,7 +96,7 @@ class ProductListView extends React.Component
       render() {        
         var that = this;
         var imageList = [];
-       
+        
         for(var  i = 0;i < this.props.productsData.length ;i++)
         {  
             var data = this.props.productsData[i];
@@ -76,7 +105,8 @@ class ProductListView extends React.Component
             var price = urlTrimmed.substring(urlTrimmed.lastIndexOf('/')+1,urlTrimmed.length);
             price = price/100;
             data.price = price;
-
+            data.selected = this.state.selectedItems.indexOf(data.id) != -1?true:false;
+            //console.log('value for '+data.id+ ' '+data.selected)
             imageList.push( <TileLayoutItem key = {data.id}><ProductThumbnail 
                                 data={data}
                                 id={data.id}
@@ -102,8 +132,7 @@ class ProductListView extends React.Component
             <SkyLightStateless        
               ref="dialogWithCallBacks"
               dialogStyles={this.state.dialogStyles} 
-              titleStyle = {{marginTop:"10px"}}             
-              beforeOpen={this._executeBeforeModalOpen}
+              titleStyle = {{marginTop:"10px"}} 
               title="Product Details">
                <ProductDetailsView productDetails ={this.state.productDetails}/> 
             </SkyLightStateless>
@@ -123,7 +152,8 @@ ProductListView.propTypes = {
    perPageProducts:React.PropTypes.number,
    loadProductsView:React.PropTypes.func,
    commoditySelectedItems:React.PropTypes.array,
-   getProductDetails:React.PropTypes.func
+   getProductDetails:React.PropTypes.func,
+   shoppingCartItems:React.PropTypes.array
 }
 
 ProductListView.defaultProps = {  

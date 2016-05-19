@@ -4,16 +4,15 @@ import { updateShoppingCart} from '../actions/AppActionData'
 import ProductsListView from '../components/ProductListComponent/ProductsListView.jsx';
 
 
+const mapStateToProps = (state) => {  
 
-const mapStateToProps = (state) => {   
-  
-  
   return {
     productsData: state.productsViewData.productsData.photos,
-    commoditySelectedItems:state.productCommodityData.selectedProductCategory
-
+    commoditySelectedItems:state.productCommodityData.selectedProductCategory,
+    shoppingCartItems:state.updateShoppingCart.shoppingCart     
   }
 }
+
 
 const mapDispatchToProps = (dispatch) => { 
   return {

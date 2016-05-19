@@ -10,3 +10,15 @@ export function updateShoppingCart(productSelected,product)
 		    product:product
 		  }
 }
+
+export const UPDATE_PRODUCTS_VIEW= 'UPDATE_PRODUCTS_VIEW'
+export function updateProductsView(productSelected,product)
+{     
+
+	 return {
+		    type: UPDATE_PRODUCTS_VIEW,
+		    productSelected:productSelected,
+		    product:product
+		  }
+}
+

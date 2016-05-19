@@ -8,10 +8,12 @@ import  {UPDATE_SHOPPING_CART} from '../actions/AppActionData';
 	switch(action.type)
 	{
 		case UPDATE_SHOPPING_CART:
-		return Object.assign({}, state, {
-        shoppingCart: modifyShoppingCart(state.shoppingCart.slice(0), action)
-      })
+				return Object.assign({}, state, {
+						        shoppingCart: modifyShoppingCart(state.shoppingCart.slice(0), action)
+						      })
 		break;
+		
+
 		default :
 			return state
 		break
@@ -20,7 +22,6 @@ import  {UPDATE_SHOPPING_CART} from '../actions/AppActionData';
 
 function modifyShoppingCart(shoppingCart,action)
 {
-	
 	if(action.productSelected)
 	{
 		return addProduct(shoppingCart,action.product)

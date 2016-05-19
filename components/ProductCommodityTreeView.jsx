@@ -79,7 +79,7 @@ class ProductCommodityTreeView extends React.Component {
     if (propName.indexOf('checked') >= 0) {
       var selectedItems = [];
 
-      var allChildren = _.flatten(_.pluck(mutation.treeData,'children'));
+      var allChildren = _.flatten(_.map(mutation.treeData,'children'));
       var childWithId = _.find(allChildren,function(child){                                                            
                                                             if(child.checked == true)
                                                             {                                                               
@@ -100,7 +100,7 @@ class ProductCommodityTreeView extends React.Component {
       action += "Changed";
     }
 
-    console.log("Controller View received tree menu " + action + " action: " + node.join(" > "));
+    //console.log("Controller View received tree menu " + action + " action: " + node.join(" > "));
 
     
 

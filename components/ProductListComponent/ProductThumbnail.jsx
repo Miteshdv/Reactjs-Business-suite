@@ -9,29 +9,34 @@ var ProductThumbnail = React.createClass({
   },
 
   getInitialState: function() {
+    
     return {
       imgGrid: this.props.gridClass || this.props.defautImgGrid,
-      imgClass: this.props.imgClass || this.props.defautImgClass,
-      data: this.props.data
+      imgClass: this.props.imgClass || this.props.defautImgClass,      
+      data:this.props.data,
+      checked:this.props.data.selected     
     }
   },
-
-  componentWillReceiveProps: function(nextProps) {
-    
-    if (nextProps.data !== this.state.data) {     
-      this.setState({data: nextProps.data })
-    }
-  },
-
+  
   
 
-  handleClick: function() {
-    this.props.handleClick(Object.assign({}, this.state.data));
+  componentWillReceiveProps:function(nextProps)
+  {
+    this.setState({checked:nextProps.data.selected})
+
+  },
+   
+
+  selectProduct:function(event) { 
+    this.setState({checked:event.currentTarget.checked})
+    this.props.productSelection(event.currentTarget.checked,this.state.data)
 
   },
 
-  selectProduct:function(event) {
-    this.props.productSelection(event.currentTarget.checked,this.state.data)
+
+   handleClick: function() {
+    
+    this.props.handleClick(Object.assign({}, this.state.data));
 
   },
 
@@ -41,14 +46,14 @@ var ProductThumbnail = React.createClass({
       <div style= {{border:"1px solid",margin:"6px"}}             
            >
         <div style = {{width:"100%",textAlign:"center",marginTop:"5px"}}>
-          <img src={this.state.data.src.small} style = {{maxWidth:"100%",maxHeight:"100px"}}  onClick={this.handleClick}/>
+          <img src={this.props.data.src.small} style = {{maxWidth:"100%",maxHeight:"100px"}}  onClick={this.handleClick}/>
           <div style = {{width:"100%",float:"right","margin":"4px",padding:"4px",textAlign:"center"}}>
-           {this.state.data.photographer}
+           {this.props.data.photographer}
             <div>
               <span style= {{fontWeight:'bold'}}>Price:</span>
               <span style = {{marginLeft:"8px"}}>{currency}</span> 
-              <span>{this.state.data.price}</span>  
-              <input type="checkbox" style = {{marginLeft:"8px"}} onChange = {this.selectProduct}/>   
+              <span>{this.props.data.price}</span>  
+              <input type="checkbox" ref={(ref) => this.productCBox = ref}  checked = {this.state.checked} style = {{marginLeft:"8px"}}   onChange = {this.selectProduct}/>   
             </div>        
           </div>
 

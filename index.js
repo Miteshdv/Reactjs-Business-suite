@@ -7,10 +7,9 @@ import { createStore } from 'redux'
 import configureStore from './store/configureStore.js'
 import AppRootReducer from './reducers/AppRootReducer.js'
 const treeCss = require('./assets/styles/tree-view.css')
-const productListCss = require('./assets/styles/ProductList.css')
-const reactGridLayoutStyles = require('./assets/styles/ReactGridLayoutStyles.css')
-const flexHelper = require('./assets/styles/flex-helper.css')
 const AppCss = require('./assets/styles/App.css')
+const bootstrap = require('./assets/styles/bootstrap.css')
+
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 
