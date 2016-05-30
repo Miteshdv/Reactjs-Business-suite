@@ -52,5 +52,20 @@
     cursor: pointer; 
 }
 
+.paginationButton {
+    height:16px;
+    width:16px
+}
+
+.paginationButton:hover{
+    cursor: pointer; 
+    height:16px;
+    width:16px
+}
+
+.linkStyle:hover{
+    cursor:pointer;
+}
+
 
 button:focus {outline:0;}

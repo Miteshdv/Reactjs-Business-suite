@@ -3,7 +3,8 @@ var ProductThumbnail = require('./ProductThumbnail.jsx');
 var TileLayout = require('pui-react-tile-layout').TileLayout;
 var TileLayoutItem = require('pui-react-tile-layout').TileLayoutItem;
 import SkyLightStateless from 'react-skylight';
-import ProductDetailsView from './ProductDetailsView.jsx'
+import ProductDetailsView from './ProductDetailsView.jsx';
+import ProductPaginationBar from './ProductPaginationBar.jsx';
  _ = require('lodash');
 
 class ProductListView extends React.Component
@@ -11,7 +12,7 @@ class ProductListView extends React.Component
       constructor() {
          super()         
          this.state = {productDetails:{},
-                       selectedItems:[]
+                       selectedItems:[],query:''
                        };
          
        }
@@ -88,8 +89,15 @@ class ProductListView extends React.Component
             var queryPart2 = parentArray.join(',');
             var query = queryPart1 + ' + '+queryPart2;
             
-           this.props.loadProductsView(query);
+            this.paginationBar.resetComponent();
+            this.setState({query:query})
+           this.props.loadProductsView(query,1);
         }
+      }
+
+      loadPage(pageNum)
+      {
+          this.props.loadProductsView(this.state.query,pageNum);
       }
 
       
@@ -126,6 +134,7 @@ class ProductListView extends React.Component
 
         return (
           <div>
+          <ProductPaginationBar ref={(ref) => this.paginationBar = ref} totalPages = {this.props.totalPages} loadPage = {this.loadPage.bind(this)} style={{width:"100%"}}/>
           <TileLayout columns={6} noGutter >
                  {imageList.length>0?imageList:<span style = {{margin:"5px",fontWeight:"bold"}}>Please Select Products Category</span>}  
            </TileLayout>
@@ -136,6 +145,7 @@ class ProductListView extends React.Component
               title="Product Details">
                <ProductDetailsView productDetails ={this.state.productDetails}/> 
             </SkyLightStateless>
+            
           </div>
          
         )
@@ -153,12 +163,14 @@ ProductListView.propTypes = {
    loadProductsView:React.PropTypes.func,
    commoditySelectedItems:React.PropTypes.array,
    getProductDetails:React.PropTypes.func,
-   shoppingCartItems:React.PropTypes.array
+   shoppingCartItems:React.PropTypes.array,
+   totalPages:React.PropTypes.number
 }
 
 ProductListView.defaultProps = {  
    defautImgWrapper: 'clearfix',
-   productsData:[]
+   productsData:[],
+   totalPages:0
 }
 
 

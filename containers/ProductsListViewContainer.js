@@ -9,15 +9,16 @@ const mapStateToProps = (state) => {
   return {
     productsData: state.productsViewData.productsData.photos,
     commoditySelectedItems:state.productCommodityData.selectedProductCategory,
-    shoppingCartItems:state.updateShoppingCart.shoppingCart     
+    shoppingCartItems:state.updateShoppingCart.shoppingCart ,
+    totalPages: state.productsViewData.totalPages   
   }
 }
 
 
 const mapDispatchToProps = (dispatch) => { 
   return {
-    loadProductsView: (query) => {      
-      dispatch(getProductsViewData(query))
+    loadProductsView: (query,pageNum) => {      
+      dispatch(getProductsViewData(query,pageNum))
     },
 
     updateShoppingCart:(productSelected,product) =>

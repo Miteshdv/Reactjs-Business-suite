@@ -9,17 +9,26 @@ export default function getProductsData(state = {productsData:[]},action)
 		
     case RECEIVE_PRODUCTS_DATA:      
       return Object.assign({}, state, { 
-        productsData: action.productsData     
+        productsData: action.productsData,
+        totalPages:getTotalNumberOfPages(action.productsData)     
       })
       break; 
       case UPDATE_PRODUCTS_VIEW:      
         return Object.assign({}, state, {
-                    productsData:updateProductSelection(Object.assign({},state.productsData), action.product)
+                    productsData:updateProductSelection(Object.assign({},state.productsData), action.product)                    
                   })
     break;  
     default:
       return state
   }
+}
+
+function getTotalNumberOfPages(productsData)
+{ 
+    var totalPages = Math.floor(productsData.total_results/productsData.per_page);    
+    var lastPage = productsData.total_results%productsData.per_page > 0 ?1:0;
+    totalPages = totalPages+lastPage;
+    return totalPages;
 }
 
 

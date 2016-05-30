@@ -18,8 +18,6 @@ var ProductThumbnail = React.createClass({
     }
   },
   
-  
-
   componentWillReceiveProps:function(nextProps)
   {
     this.setState({checked:nextProps.data.selected})
@@ -43,11 +41,11 @@ var ProductThumbnail = React.createClass({
   render: function() {
     var currency = '$'
     return (
-      <div style= {{border:"1px solid",margin:"6px"}}             
+      <div style= {{border:"1px solid",margin:"3px"}}             
            >
         <div style = {{width:"100%",textAlign:"center",marginTop:"5px"}}>
           <img src={this.props.data.src.small} style = {{maxWidth:"100%",maxHeight:"100px"}}  onClick={this.handleClick}/>
-          <div style = {{width:"100%",float:"right","margin":"4px",padding:"4px",textAlign:"center"}}>
+          <div style = {{width:"100%",float:"right","margin":"3px",padding:"3px",textAlign:"center"}}>
            {this.props.data.photographer}
             <div>
               <span style= {{fontWeight:'bold'}}>Price:</span>

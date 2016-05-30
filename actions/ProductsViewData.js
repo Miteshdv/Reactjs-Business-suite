@@ -12,9 +12,9 @@ function receiveProductsData(json) {
 
 
 
-export function getProductsViewData(query) {   
+export function getProductsViewData(query,pageNum) {
+  var url  ="http://api.pexels.com/v1/search?query="+query+"&&per_page=24&&page="+pageNum;  
   
-  var url  ="http://api.pexels.com/v1/search?query="+query+"&&per_page=50"
   return dispatch => {    
     return fetch(url,{headers:{'Authorization':'563492ad6f91700001000001f4a1db76c78d4a4c51a6f54ab4cb901f'}})
       .then(response => response.json())

@@ -6,40 +6,40 @@ class CheckoutView extends React.Component
 {
     render(){
         return (
-                  <div class="container">
-                    <div class="row" style={{marginLeft: "30%"}}>
+                  <div className="container">
+                    <div className="row" style={{marginLeft: "30%"}}>
                         <form role="form">
-                            <div class="col-lg-6">
-                                <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
-                                <div class="form-group">
+                            <div className="col-lg-6">
+                                <div className="well well-sm"><strong><span className="glyphicon glyphicon-asterisk"></span>Required Field</strong></div>
+                                <div className="form-group">
                                     <label for="InputName">Enter Name</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Enter Name" required/>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    <div className="input-group">
+                                        <input type="text" className="form-control" name="InputName" id="InputName" placeholder="Enter Name" required/>
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-asterisk"></span></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <label for="InputEmail">Enter Email</label>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required/>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    <div className="input-group">
+                                        <input type="email" className="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Enter Email" required/>
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-asterisk"></span></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <label for="InputEmail">Confirm Email</label>
-                                    <div class="input-group">
-                                        <input type="email" class="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required/>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    <div className="input-group">
+                                        <input type="email" className="form-control" id="InputEmailSecond" name="InputEmail" placeholder="Confirm Email" required/>
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-asterisk"></span></span>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                <div className="form-group">
                                     <label for="InputMessage">Enter Message</label>
-                                    <div class="input-group">
-                                        <textarea name="InputMessage" id="InputMessage" class="form-control" rows="5" required></textarea>
-                                        <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                                    <div className="input-group">
+                                        <textarea name="InputMessage" id="InputMessage" className="form-control" rows="5" required></textarea>
+                                        <span className="input-group-addon"><span className="glyphicon glyphicon-asterisk"></span></span>
                                     </div>
                                 </div>
-                                <input type="submit" name="submit" id="submit" value="Submit" class="btn btn-info pull-right"/>
+                                <input type="submit" name="submit" id="submit" value="Submit" className="btn btn-info pull-right"/>
                             </div>
                         </form>
 
