@@ -7,9 +7,10 @@ export function updateShoppingCart(productSelected,product)
 	 return {
 		    type: UPDATE_SHOPPING_CART,
 		    productSelected:productSelected,
-		    product:product
+		    product:product		    
 		  }
 }
+
 
 export const UPDATE_PRODUCTS_VIEW= 'UPDATE_PRODUCTS_VIEW'
 export function updateProductsView(productSelected,product)
@@ -21,4 +22,6 @@ export function updateProductsView(productSelected,product)
 		    product:product
 		  }
 }
+
+
 

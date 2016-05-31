@@ -23,7 +23,7 @@ const mapDispatchToProps = (dispatch) => {
 
     updateShoppingCart:(productSelected,product) =>
     { 
-     dispatch(updateShoppingCart(productSelected,product))
+     dispatch(updateShoppingCart(productSelected,Object.assign({},product)))
     }
   }
 }

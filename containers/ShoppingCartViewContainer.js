@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch) => {
   		deleteCartItem: (product) => {            	
 	      dispatch(updateShoppingCart(false,product))
         dispatch(updateProductsView(false,product))
-	    }
+	    }      
   	}
   }
 

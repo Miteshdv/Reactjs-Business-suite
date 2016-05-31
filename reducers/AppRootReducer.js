@@ -3,6 +3,7 @@ import productCommodityData from './ProductCommodityReducer'
 import productsViewData from './ProductsViewReducer'
 import  {UPDATE_SHOPPING_CART} from '../actions/AppActionData';
 
+
  function updateShoppingCart(state = {shoppingCart:[]},action)
 {		
 	switch(action.type)
@@ -12,7 +13,6 @@ import  {UPDATE_SHOPPING_CART} from '../actions/AppActionData';
 						        shoppingCart: modifyShoppingCart(state.shoppingCart.slice(0), action)
 						      })
 		break;
-		
 
 		default :
 			return state
@@ -20,8 +20,10 @@ import  {UPDATE_SHOPPING_CART} from '../actions/AppActionData';
 	}
 }
 
+
 function modifyShoppingCart(shoppingCart,action)
-{
+{	
+	
 	if(action.productSelected)
 	{
 		return addProduct(shoppingCart,action.product)
@@ -31,11 +33,13 @@ function modifyShoppingCart(shoppingCart,action)
 		return removeProduct(shoppingCart,action.product)
 	}
 	
+	
+	
 }
 
 function addProduct(shoppingCart,product)
 {
-	shoppingCart.push(product);
+	shoppingCart.push(product);	
 	return shoppingCart;
 }
 
@@ -43,7 +47,10 @@ function removeProduct(shoppingCart,product)
 {
   var productIndex = shoppingCart.findIndex(function(item){
  	if(product.id ==item.id)
- 	{
+ 	{	
+ 		item.numberOfItems = null;
+		item.price = product.originalPrice
+		item.originalPrice = null
  		return true;
  	}
  })

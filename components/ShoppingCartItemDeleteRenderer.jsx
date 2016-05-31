@@ -17,7 +17,7 @@ var ShoppingCartItemDeleteRenderer = React.createClass({
 	render: function() {
    
     	return  (					   
-				  <img className = 'deleteIconRollOver'src={deleteImgSrc} alt="Delete Item" onClick={this.handleClick}/>						
+				  <img className = 'deleteIconRollOver'src={deleteImgSrc} alt="Delete Item" onClick={this.handleClick} style ={{display:!this.props.gridParams.data.id?'none':''}}/>						
 					
 				 );
   }
